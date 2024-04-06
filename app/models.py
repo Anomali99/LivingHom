@@ -26,7 +26,7 @@ class Images(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
-    nama = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
     comment = db.Column(db.String, nullable=False)
 
 class Link(db.Model):
@@ -42,6 +42,14 @@ class Link(db.Model):
     web_checkout = db.Column(db.Integer, nullable=False, default=0)
     ig_checkout = db.Column(db.Integer, nullable=False, default=0)
     fb_checkout = db.Column(db.Integer, nullable=False, default=0)
+    dates = db.relationship('Dates', backref='link', lazy=True)
+
+class Dates(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    id_link = db.Column(db.Integer, db.ForeignKey('link.id'), nullable=False)
+    date = db.Column(db.String, nullable=False)
+    platform = db.Column(db.String, nullable=False)
+
 
 def insert_default_user(*args, **kwargs):
     if User.query.count() == 0:

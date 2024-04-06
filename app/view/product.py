@@ -37,6 +37,7 @@ def product():
         link = Link(id_product=product.id, no_wa=wa, web_link=webLink, fb_link=fbLink, ig_link=igLink)
         db.session.add(link)
         db.session.commit()
+        return redirect(f'/detail/{product.id}')
     return render_template('product.html', login=login)
 
 def generateLink(id) -> str:

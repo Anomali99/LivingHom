@@ -8,7 +8,7 @@
         id="btn-wa"
         src="{{ url_for('static', filename='asset/img/btnWA.png') }}"
         alt="Chat"
-        onclick="window.location.href='{{ link.web_link }}'"
+        onclick="window.location.href='/web/{{ link.web_link }}'"
       />
     </div>
   </div>
@@ -39,7 +39,7 @@
 <br />
 {% endif %} {% for comment in comments %}
 <div class="comment-container">
-  <h3>{{ comment.nama }}</h3>
+  <h3>{{ comment.name }}</h3>
   <p>{{ comment.comment }}</p>
 </div>
 {% endfor %}
