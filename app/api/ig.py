@@ -15,4 +15,4 @@ def igLink(token):
     db.session.commit()
     return redirect(waLink)
  else:
-   return render_template('404-link-notfound.html')
+   return render_template('404.html')

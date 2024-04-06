@@ -1,0 +1,45 @@
+<div class="detail-container">
+  <div class="detail">
+    <h1>{{ product.title }}</h1>
+    <h2>IDR {{ product.price }}</h2>
+    <p>{{ product.description }}</p>
+    <div class="btn-container">
+      <img
+        id="btn-wa"
+        src="{{ url_for('static', filename='asset/img/btnWA.png') }}"
+        alt="Chat"
+        onclick="window.location.href='{{ link.web_link }}'"
+      />
+    </div>
+  </div>
+  <div class="detail comment">
+    <div class="header">
+      <h1>Add Comment</h1>
+    </div>
+    <form method="post">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="name" name="name" />
+      <label>Comment</label>
+      <textarea
+        name="comment"
+        id="comment"
+        placeholder="comment"
+        cols="30"
+        rows="5"
+      ></textarea>
+      <input type="hidden" name="form_type" value="addComment" />
+      <button type="submit">send</button>
+    </form>
+  </div>
+</div>
+
+{% if comments %}
+<br />
+<h1>Comment</h1>
+<br />
+{% endif %} {% for comment in comments %}
+<div class="comment-container">
+  <h3>{{ comment.nama }}</h3>
+  <p>{{ comment.comment }}</p>
+</div>
+{% endfor %}

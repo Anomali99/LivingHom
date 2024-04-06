@@ -18,16 +18,18 @@
     <!-- start loop-->
     {% for product in products %}
     <div class="product-card">
-      <div class="product-image">
-        <img
-          src="{{ url_for('static', filename='upload/' + product.images[0].image_uri) }}"
-          alt="{{ product.id }}"
-        />
-      </div>
-      <div class="product-content">
-        <h3>{{ product.title }}</h3>
-        <div class="product-price">IDR {{ product.price }}</div>
-      </div>
+      <a href="/detail/{{ product.id }}">
+        <div class="product-image">
+          <img
+            src="{{ url_for('static', filename='upload/' + product.images[0].image_uri) }}"
+            alt="{{ product.id }}"
+          />
+        </div>
+        <div class="product-content">
+          <h3>{{ product.title }}</h3>
+          <div class="product-price">IDR {{ product.price }}</div>
+        </div></a
+      >
     </div>
     {% endfor %}
     <!-- end loop-->
