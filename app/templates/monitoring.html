@@ -8,30 +8,31 @@
 />
 {% endblock %} {% block content %}
 <section class="monitoring">
-  <form method="post">
+  <form method="post" id="myForm">
     <div class="submenu">
       <div class="date-between">
-        <label>Between</label>
         <input type="date" id="date1" name="date1" placeholder="date1" />
         <input type="date" id="date2" name="date2" placeholder="date2" />
+        <button type="submit" id="btn-submit">submit</button>
       </div>
       <select name="cbx-chart" id="cbx-chart">
         <option value="1" selected>all</option>
         <option value="2">product</option>
         <option value="3">a week ago</option>
         <option value="4">a month ago</option>
-        <option value="5">a month ago</option>
+        <option value="5">a year ago</option>
         <option value="6">product a week ago</option>
         <option value="7">product a month ago</option>
-        <option value="8">product a month ago</option>
+        <option value="8">product a year ago</option>
         <option value="9">custom</option>
       </select>
     </div>
+    <input type="text" id="id_product" name="id_product" hidden />
   </form>
   <div class="list-product">
     {% for product in products %}
     <div class="product" id="product-{{ product.id}}">
-      <a href="#" onclick="selected('product-{{ product.id}}')">
+      <a href="#" onclick="selected('{{ product.id}}')">
         <img
           src="{{ url_for('static', filename='upload/' + product.images[0].image_uri) }}"
           alt="{{ product.id }}"
@@ -41,8 +42,50 @@
     </div>
     {% endfor %}
   </div>
-  <div class="monitor"></div>
+  <div class="monitor">
+    <img
+      src="{{ url_for('static', filename='asset/img/chart/web_chart.png') }}"
+      alt="webChart"
+    />
+    <img
+      src="{{ url_for('static', filename='asset/img/chart/ig_chart.png') }}"
+      alt="igChart"
+    />
+    <img
+      src="{{ url_for('static', filename='asset/img/chart/fb_chart.png') }}"
+      alt="fbChart"
+    />
+  </div>
+  <div class="tbl">
+    <h1>Products</h1>
+    <div class="row" id="header">
+      <h2>Title</h2>
+      <h2>Web Link</h2>
+      <h2>IG Link</h2>
+      <h2>FB Link</h2>
+      <h2>Web Click</h2>
+      <h2>IG Click</h2>
+      <h2>FB Click</h2>
+      <h2>Total Click</h2>
+    </div>
+    {% for product in products %}
+    <div class="row">
+      <h3 class="title">{{ product.title }}</h3>
+      <h3>/web/{{ product.link[0].web_link }}</h3>
+      <h3>/ig/{{ product.link[0].ig_link }}</h3>
+      <h3>/fb/{{ product.link[0].fb_link }}</h3>
+      <h3>{{ product.link[0].web_click }}</h3>
+      <h3>{{ product.link[0].ig_click }}</h3>
+      <h3>{{ product.link[0].fb_click }}</h3>
+      <h3>
+        {{ (product.link[0].web_click + product.link[0].ig_click +
+        product.link[0].fb_click) }}
+      </h3>
+    </div>
+    {% endfor %}
+  </div>
 </section>
+
 {% endblock %} {% block scriptApp %}
 <script src="{{ url_for('static', filename='js/monitoring.js') }}"></script>
 {% endblock %}

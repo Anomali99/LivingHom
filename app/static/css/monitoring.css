@@ -26,6 +26,13 @@ select {
   display: none;
 }
 
+#btn-submit {
+  height: 100%;
+  padding: 0.2rem;
+  background-color: var(--primary);
+  color: #fff;
+}
+
 .list-product {
   overflow-y: auto;
   display: none;
@@ -66,4 +73,57 @@ select {
   padding: 0.5rem;
   font-family: "areo", sans-serif;
   width: max-content;
+}
+
+.monitor {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+  position: relative;
+}
+
+.monitor img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--bg);
+  object-fit: cover;
+}
+
+.tbl {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.tbl h1 {
+  font-family: "areo", sans-serif;
+}
+
+.tbl .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header {
+  margin-top: 0.8rem;
+  background-color: #ddd;
+}
+
+.tbl .row h3,
+.tbl .row h2 {
+  width: 12.5%;
+  border: 1px solid var(--bg);
+  padding: 0.5rem;
+  text-align: center;
+  font-family: "areo", sans-serif;
+}
+
+.tbl .row .title {
+  text-align: left;
+}
+
+.tbl .row h3 {
+  font-family: "arial", sans-serif;
+  font-size: medium;
 }

@@ -5,33 +5,17 @@ document.getElementById("cbx-chart").addEventListener("change", function () {
 
   switch (value) {
     case "1":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "none";
-      break;
-    case "2":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "flex";
-      break;
     case "3":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "none";
-      break;
     case "4":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "none";
-      break;
     case "5":
       dateBetween.style.display = "none";
       listProduct.style.display = "none";
+      var form = document.getElementById("myForm");
+      form.submit();
       break;
+    case "2":
     case "6":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "flex";
-      break;
     case "7":
-      dateBetween.style.display = "none";
-      listProduct.style.display = "flex";
-      break;
     case "8":
       dateBetween.style.display = "none";
       listProduct.style.display = "flex";
@@ -44,10 +28,14 @@ document.getElementById("cbx-chart").addEventListener("change", function () {
 });
 
 function selected(id) {
-  var item = document.getElementById(id);
+  var item = document.getElementById(`product-${id}`);
+  var input = document.getElementById("id_product");
+  var form = document.getElementById("myForm");
   items = document.querySelectorAll(".product");
   Array.from(items).forEach((element) => {
     element.style.backgroundColor = "#fff";
   });
   item.style.backgroundColor = "#ddd";
+  input.value = id;
+  form.submit();
 }

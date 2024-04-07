@@ -2,6 +2,7 @@ from . import view
 from datetime import datetime
 from app.models import db, Product, Images, Link
 from flask import render_template, session, request, redirect, current_app
+from .chart import getChartAll, getChartCustomAll, getChartWeek, getChartYear, getChartMonth, getChartProduct, getChartMonthAll, getChartWeekAll, getChartYearAll
 import os
 import random
 
@@ -56,6 +57,33 @@ def monitoring():
             return redirect('/logout')
     else:
         return redirect('/')
+    if request.method == 'POST':
+        menu = request.form['cbx-chart']
+        if menu == '9':
+            date1 = request.form['date1']
+            date2 = request.form['date2']
+            getChartCustomAll(date1=date1, date2=date2, title=None)
+        elif menu == '3':
+            getChartWeekAll()
+        elif menu == '4':
+            getChartMonthAll()
+        elif menu == '5':
+            getChartYearAll()
+        elif menu == '2':
+            idProduct = request.form['id_product']
+            getChartProduct(id=idProduct)
+        elif menu == '6':
+            idProduct = request.form['id_product']
+            getChartWeek(id=idProduct)
+        elif menu == '7':
+            idProduct = request.form['id_product']
+            getChartMonth(id=idProduct)
+        elif menu == '8':
+            idProduct = request.form['id_product']
+            getChartYear(id=idProduct)
+        else:
+            getChartAll()
+    else:
+        getChartAll()
     products = Product.query.all()
     return render_template('monitoring.html', login=login, products=products)
-        
