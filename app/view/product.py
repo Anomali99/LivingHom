@@ -13,6 +13,8 @@ def product():
         current = datetime.now().strftime('%Y-%m-%d')
         if time != current:
             return redirect('/logout')
+    else:
+        return redirect('/')
     if request.method == 'POST':
         title = request.form['title']
         price = request.form['price']
@@ -43,3 +45,17 @@ def product():
 def generateLink(id) -> str:
     generate = ''.join(random.choices('0123456789', k=10))  
     return f'{generate}{str(id)}'
+
+@view.route('/monitoring', methods=['GET','POST'])
+def monitoring():
+    login = session.get('login')
+    if login:
+        time = session.get('time')
+        current = datetime.now().strftime('%Y-%m-%d')
+        if time != current:
+            return redirect('/logout')
+    else:
+        return redirect('/')
+    products = Product.query.all()
+    return render_template('monitoring.html', login=login, products=products)
+        

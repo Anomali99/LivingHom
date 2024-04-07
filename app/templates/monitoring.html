@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}
+<title>LivingHome-Admin</title>
+{% endblock %} {% block sccApp %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/monitoring.css') }}"
+/>
+{% endblock %} {% block content %}
+<section class="monitoring">
+  <form method="post">
+    <div class="submenu">
+      <div class="date-between">
+        <label>Between</label>
+        <input type="date" id="date1" name="date1" placeholder="date1" />
+        <input type="date" id="date2" name="date2" placeholder="date2" />
+      </div>
+      <select name="cbx-chart" id="cbx-chart">
+        <option value="1" selected>all</option>
+        <option value="2">product</option>
+        <option value="3">a week ago</option>
+        <option value="4">a month ago</option>
+        <option value="5">a month ago</option>
+        <option value="6">product a week ago</option>
+        <option value="7">product a month ago</option>
+        <option value="8">product a month ago</option>
+        <option value="9">custom</option>
+      </select>
+    </div>
+  </form>
+  <div class="list-product">
+    {% for product in products %}
+    <div class="product" id="product-{{ product.id}}">
+      <a href="#" onclick="selected('product-{{ product.id}}')">
+        <img
+          src="{{ url_for('static', filename='upload/' + product.images[0].image_uri) }}"
+          alt="{{ product.id }}"
+        />
+        <h3>{{ product.title }}</h3></a
+      >
+    </div>
+    {% endfor %}
+  </div>
+  <div class="monitor"></div>
+</section>
+{% endblock %} {% block scriptApp %}
+<script src="{{ url_for('static', filename='js/monitoring.js') }}"></script>
+{% endblock %}
