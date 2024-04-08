@@ -6,7 +6,6 @@
 
 - Python
 - Flask
-- PostgreSQL
 
 ## Init
 
