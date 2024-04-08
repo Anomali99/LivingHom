@@ -15,7 +15,6 @@ def getChartAll():
         indexX = [link.date for link in links]
         indexY = [link.link_count for link in links]
         plt.bar(indexX,indexY)
-        # plt.plot(indexX,indexY, marker='o')
         plt.gca().set_ylim(0, range)
         plt.xlabel('date')
         plt.ylabel('count')
@@ -34,7 +33,6 @@ def getChartCustomAll(date1, date2, title):
         indexX = [link.date for link in links]
         indexY = [link.link_count for link in links]
         plt.bar(indexX,indexY)
-        # plt.plot(indexX,indexY, marker='o')
         plt.gca().set_ylim(0, range)
         plt.xlabel('date')
         plt.ylabel('count')
@@ -51,20 +49,21 @@ def getChartWeekAll():
     daysAgo = today + timedelta(days=-7)
     daysAgoStr = daysAgo.strftime('%Y-%m-%d')
     todayStr = today.strftime('%Y-%m-%d')
-    getChartCustomAll(date1=todayStr,date2=daysAgoStr,title='seminggu lalu')
+    getChartCustomAll(date1=daysAgoStr,date2=todayStr,title='seminggu lalu')
 
 def getChartMonthAll():
-    date = getMonthDate()
-    todayStr = date[0]
-    daysAgoStr = date[1]
-    getChartCustomAll(date1=todayStr,date2=daysAgoStr,title='sebulan lalu')
+    today = datetime.now().date()
+    daysAgo = today + timedelta(days=-365)
+    daysAgoStr = daysAgo.strftime('%Y-%m-%d')
+    todayStr = today.strftime('%Y-%m-%d')
+    getChartCustomAll(date1=daysAgoStr,date2=todayStr,title='sebulan lalu')
 
 def getChartYearAll():
     today = datetime.now().date()
     daysAgo = today + timedelta(days=-365)
     daysAgoStr = daysAgo.strftime('%Y-%m-%d')
     todayStr = today.strftime('%Y-%m-%d')
-    getChartCustomAll(date1=todayStr,date2=daysAgoStr,title='setahun lalu')
+    getChartCustomAll(date1=daysAgoStr,date2=todayStr,title='setahun lalu')
 
 def getChartProduct(id):
     product = Product.query.filter_by(id=int(id)).first()
@@ -77,7 +76,6 @@ def getChartProduct(id):
         indexX = [link.date for link in links]
         indexY = [link.link_count for link in links]
         plt.bar(indexX,indexY)
-        # plt.plot(indexX,indexY, marker='o')
         plt.gca().set_ylim(0, range)
         plt.xlabel('date')
         plt.ylabel('count')
@@ -118,26 +116,28 @@ def getChartWeek(id):
     daysAgo = today + timedelta(days=-7)
     daysAgoStr = daysAgo.strftime('%Y-%m-%d')
     todayStr = today.strftime('%Y-%m-%d')
-    getChartCustom(date1=todayStr,date2=daysAgoStr,title='seminggu lalu', id=id)
+    getChartCustom(date1=daysAgoStr,date2=todayStr,title='seminggu lalu', id=id)
 
 def getChartMonth(id):
-    date = getMonthDate()
-    todayStr = date[0]
-    daysAgoStr = date[1]
-    print(daysAgoStr)
-    print(todayStr)
-    getChartCustom(date1=todayStr,date2=daysAgoStr,title='sebulan lalu',id=id)
+    # date = getMonthDate()
+    # todayStr = date[0]
+    # daysAgoStr = date[1]
+    today = datetime.now().date()
+    daysAgo = today + timedelta(days=-365)
+    daysAgoStr = daysAgo.strftime('%Y-%m-%d')
+    todayStr = today.strftime('%Y-%m-%d')
+    getChartCustom(date1=daysAgoStr,date2=todayStr,title='sebulan lalu',id=id)
 
 def getChartYear(id):
     today = datetime.now().date()
     daysAgo = today + timedelta(days=-365)
     daysAgoStr = daysAgo.strftime('%Y-%m-%d')
     todayStr = today.strftime('%Y-%m-%d')
-    getChartCustom(date1=todayStr,date2=daysAgoStr,title='setahun lalu', id=id)
+    getChartCustom(date1=daysAgoStr,date2=todayStr,title='setahun lalu', id=id)
 
-def getMonthDate():
-    today = datetime.now().date()
-    month = today.month - 1 
-    year = today.year
-    last = calendar.monthrange(year, month)[1]
-    return [f'{year}-{month:02d}-01',f'{year}-{month:02d}-{last}']
+# def getMonthDate():
+#     today = datetime.now().date()
+#     month = today.month - 1 
+#     year = today.year
+#     last = calendar.monthrange(year, month)[1]
+#     return [f'{year}-{month:02d}-01',f'{year}-{month:02d}-{last}']

@@ -1,7 +1,7 @@
 class Config:
     SQLALCHEMY_DATABASE_URI= 'sqlite:///livinghome.db'
-    UPLOAD_FOLDER= "static/upload"
-    IMAGE_FOLDER= "static/asset/img"
-    CHART_FOLDER= "static/asset/img/chart"
-    ICON_FOLDER= "static/asset/icon"
+    UPLOAD_FOLDER= "app/static/upload"
+    IMAGE_FOLDER= "app/static/asset/img"
+    CHART_FOLDER= "app/static/asset/img/chart"
+    ICON_FOLDER= "app/static/asset/icon"
     SECRET_KEY= "mengaji"
