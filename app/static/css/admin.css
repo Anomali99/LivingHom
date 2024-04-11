@@ -57,3 +57,17 @@ button {
   font-size: 1rem;
   border-radius: 0.5rem;
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .login .container {
+    width: 70%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 450px) {
+  .login .container {
+    width: 90%;
+  }
+}

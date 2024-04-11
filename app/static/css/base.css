@@ -59,3 +59,32 @@
 .navbar .navbar-logo span {
   color: var(--text);
 }
+
+/* Laptop */
+@media (max-width: 1366px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  html {
+    font-size: 62.5%;
+  }
+  .navbar div img {
+    width: 4rem;
+    height: auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+  .navbar div img {
+    width: 3.5rem;
+    height: auto;
+  }
+}

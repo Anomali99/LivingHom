@@ -26,7 +26,7 @@ venv\Scripts\activate
 for linux :
 
 ```bash
-venv\lib\activate
+venv\bin\activate
 ```
 
 ### 6. Install requirements
