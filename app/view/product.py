@@ -1,6 +1,6 @@
 from . import view
 from datetime import datetime
-from app.models import db, Product, Images, Link
+from app.models import db, Product, Images, Link, Dates
 from flask import render_template, session, request, redirect, current_app
 from .chart import getChartAll, getChartCustomAll, getChartWeek, getChartYear, getChartMonth, getChartProduct, getChartMonthAll, getChartWeekAll, getChartYearAll
 import os
@@ -90,3 +90,23 @@ def monitoring():
     IPaddress = socket.gethostbyname(socket.gethostname())
     URI = f'http://{IPaddress}:5127' 
     return render_template('monitoring.html', login=login, products=products, IPserver=URI)
+
+
+
+@view.route('/remove/<id>')
+def removeId(id):
+   product = Product.query.filter_by(id=int(id)).first()
+   links = Link.query.filter_by(id_product=product.id).all()
+   images = Images.query.filter_by(id_product=product.id).all()
+   for image in images:
+        filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], image.image_uri)
+        os.remove(filepath)
+        db.session.delete(image) 
+   for link in links:
+        dates = Dates.query.filter_by(id_link=link.id).all()
+        for date in dates:
+            db.session.delete(date) 
+        db.session.delete(link) 
+   db.session.delete(product) 
+   db.session.commit()
+   return f'remove product id {id}'
