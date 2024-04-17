@@ -63,7 +63,7 @@
     id="webLink"
     name="webLink"
     placeholder="web link"
-    value="/web/{{ link.web_link }}"
+    value="{{ IPserver }}/web/{{ link.web_link }}"
     readonly
   />
   <label for="wa">Instagram Link</label>
@@ -72,7 +72,7 @@
     id="igLink"
     name="igLink"
     placeholder="instagram link"
-    value="/ig/{{ link.ig_link }}"
+    value="{{ IPserver }}/ig/{{ link.ig_link }}"
     readonly
   />
   <label for="fbLink">Facebook Link</label>
@@ -81,7 +81,7 @@
     id="fbLink"
     name="fbLink"
     placeholder="facebook link"
-    value="/fb/{{ link.fb_link }}"
+    value="{{ IPserver }}/fb/{{ link.fb_link }}"
     readonly
   />
   <input type="hidden" name="form_type" value="update" />

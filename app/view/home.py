@@ -2,6 +2,7 @@ from . import view
 from datetime import datetime
 from app.models import db, Product, Images, Link, Comment
 from flask import render_template, session, redirect, request
+import socket
 
 @view.route('/', methods=['GET', 'POST'])
 def home():
@@ -26,6 +27,8 @@ def detail(id):
     if product:
         link = Link.query.filter_by(id_product=product.id).first()
         comments = Comment.query.filter_by(id_product=product.id).all()
+        IPaddress = socket.gethostbyname(socket.gethostname())
+        URI = f'http://{IPaddress}:5127' 
         if request.method == 'POST':
             type = request.form['form_type']
             if type == 'addComment':
@@ -34,7 +37,6 @@ def detail(id):
                 newComment = Comment(name=nama,comment=comment,id_product=product.id)
                 db.session.add(newComment)
                 db.session.commit()
-                return redirect(f'/detail/{product.id}')
             elif type == 'update':
                 title = request.form['title']
                 price = request.form['price']
@@ -55,7 +57,6 @@ def detail(id):
                 db.session.merge(newProduct)
                 db.session.merge(newLink)
                 db.session.commit()
-                return redirect(f'/detail/{product.id}')
-        return render_template('detail.html', login=login, product=product, link=link, comments=comments)
+        return render_template('detail.html', login=login, product=product, link=link, comments=comments, IPserver=URI)
     else:
         return render_template('404.html')

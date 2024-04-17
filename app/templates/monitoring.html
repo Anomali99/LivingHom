@@ -75,9 +75,9 @@
       </div>
       {% for product in products %}
       <div class="row">
-        <h3>/web/{{ product.link[0].web_link }}</h3>
-        <h3>/ig/{{ product.link[0].ig_link }}</h3>
-        <h3>/fb/{{ product.link[0].fb_link }}</h3>
+        <h3>{{ IPserver }}/web/{{ product.link[0].web_link }}</h3>
+        <h3>{{ IPserver }}/ig/{{ product.link[0].ig_link }}</h3>
+        <h3>{{ IPserver }}/fb/{{ product.link[0].fb_link }}</h3>
         <h3>{{ product.link[0].web_click }}</h3>
         <h3>{{ product.link[0].ig_click }}</h3>
         <h3>{{ product.link[0].fb_click }}</h3>

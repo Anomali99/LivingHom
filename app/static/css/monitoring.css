@@ -129,12 +129,16 @@ h3 {
 
 .row h2,
 .row h3 {
-  flex: 0 0 25%;
+  flex: 0 0 60%;
 }
 
 h2 {
   background-color: #ddd;
   flex: 0 0 inherit;
+}
+
+.title {
+  text-align: left;
 }
 
 /* Tablet */

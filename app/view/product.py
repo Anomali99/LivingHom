@@ -4,6 +4,7 @@ from app.models import db, Product, Images, Link
 from flask import render_template, session, request, redirect, current_app
 from .chart import getChartAll, getChartCustomAll, getChartWeek, getChartYear, getChartMonth, getChartProduct, getChartMonthAll, getChartWeekAll, getChartYearAll
 import os
+import socket
 import random
 
 @view.route('/product', methods=['GET','POST'])
@@ -86,4 +87,6 @@ def monitoring():
     else:
         getChartAll()
     products = Product.query.all()
-    return render_template('monitoring.html', login=login, products=products)
+    IPaddress = socket.gethostbyname(socket.gethostname())
+    URI = f'http://{IPaddress}:5127' 
+    return render_template('monitoring.html', login=login, products=products, IPserver=URI)
