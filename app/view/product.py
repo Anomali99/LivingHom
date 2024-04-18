@@ -90,3 +90,5 @@ def monitoring():
     IPaddress = socket.gethostbyname(socket.gethostname())
     URI = f'http://{IPaddress}:5127' 
     return render_template('monitoring.html', login=login, products=products, IPserver=URI)
+
+#coba
